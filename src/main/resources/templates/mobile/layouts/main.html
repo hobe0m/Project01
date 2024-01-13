@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      <!-- 레이아웃 기능 추가 -->
+
+      <!-- Model 쪽에 추가해야 사용(조회) 가능, 즉 컨트롤러가 있어야 사용(조회)가능하다. -->
+      <!-- url과 template만 연동할 수도 있다 - addViewControllers를 사용하면 된다.  -->
+      <!-- 간단한 url과 template 연동하기 위함, 이걸 사용하면 Model을 통해서 보진 못한다. -->
+
+<head>
+    <!-- 공통으로 필요한 것 추가 -->
+    <meta charset="UTF-8">
+
+    <!-- Mobile에서는 viewport 설정 필수 -->
+    <!-- 화소 기준의 사이즈가 있을 때 기준을 정해주지 않으면 작게 보이기 때문에, 디바이스 별 기준(크기)을 따로 잡아준다. -->
+    <!-- viewport : 보이는 화면에 대한 설정 -->
+    <!-- width=device-width : 사이즈를 물리적 사이즈 기준을 통해 상대적으로 바꿔준다. -->
+    <!-- user-scalable : 사용자가 늘릴 수 있는지에 대한 여부 -->
+    <!-- initial-scale : 처음 사이즈, 초기 배율 지정, 1.0이 기본값 -->
+    <!-- minimum-scale : 축소 가능한 비율 0.5이면, 1/2 -->
+    <!-- maximum-scale : 확대 가능한 비율 3.0이면, 3배 -->
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1,
+                minimum-scale=0.5, maximum-scale=3.0">
+    <!-- 여기서는 보여주려고 썼지만 사실 minimum-scale와 maximum-scale는 잘 쓰지 않는다 -->
+
+
+    <!-- #{pageTitle}이 속성으로 추가되면 출력 가능 -->
+    <title th:if="${pageTitle != null}" th:text="#{pageTitle}"></title>
+
+    <!-- 공통적인 스타일 추가 S -->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
+
+    <!-- ${addCommonCss}에서 꺼낸 값을 자동적, 선별적으로 경로 추가 -->
+    <!-- 필요한 자원만 추가할 수 있게 한다. -->
+    <link rel="stylesheet" type="text/css"
+          th:each="cssFile : ${addCommonCss}"
+          th:href="@{/common/css/{file}.css(file={cssFile})}">
+
+    <!-- 공통적인 스타일 추가 E -->
+
+    <!-- 관리자(관리자 공통)에만 적용되는 스타일 추가 S -->
+    <link rel="stylesheet" type="text/css" th:href="@{/mobile/css/style.css}">
+
+    <!-- 여러 개의 css 파일이 있을 때, 각각의 css파일을 동적으로 필요한 것만 추가하기 위함 -->
+    <!-- 관리자, 프런트, 모바일에서 다 쓰이지만 무거워서 전부 다 넣어놓고 서버를 돌릴 수 없기 때문 -->
+
+    <!-- {} 내부는 변수의 자리, 교체가 되는 부분 -->
+    <!-- th:each : 속성에 있는 각각의 요소를 반복 -->
+
+    <!-- th:each이므로 ${addCss}는 배열 또는 List나 set등이 와야한다 -->
+
+    <!-- css(file=${cssFile})는 file에 $cssFile 이름이 온다는 뜻 -->
+    <!-- ${cssFile}가 "style"이면, 최종적인 결과는 @{/admin/css/style.css} -->
+
+    <!-- 따라서 반복되는 ${addCss}의 값을 cssFile로 넣고 {file}을 교체하는 것 -->
+    <!-- 배열이므로 하나씩 넣고, 링크를 하나씩 생성 -->
+
+    <!-- th:href : 경로 지정 -->
+    <!-- ${cssFile}에 오는 값을 경로의 마지막 값으로 지정해라 -->
+    <link rel="stylesheet" type="text/css"
+          th:each="cssFile : ${addCss}"
+          th:href="@{/mobile/css/{file}.css(file=${cssFile})}">
+
+    <!-- 관리자(관리자 공통)에만 적용되는 스타일 추가 E -->
+
+    <!-- Model쪽을 이용해서 값을 넘기지 못하는 경우, 이 페이지에 특화된 css 적용 가능 -->
+    <!-- th:block : HTML에는 영향을 미치지 않으면서, Thymeleaf의 레이아웃 기능을 통해 -->
+    <!-- 특정 부분에 동적으로 내용을 추가하거나 조건부로 렌더링 할 때 사용 -->
+    <!-- 여기서는 이 위치에 동적으로 css 파일을 추가하고자 할 때 사용 -->
+    <!-- Model이 없어서 사용하지 못하는 것들 -->
+    <th:block layout:fragment="addCss"></th:block>
+
+    <!-- 공통적인 스크립트 추가 S -->
+    <script th:src="@{/common/js/common.js}"></script>
+    <script th:each="jsFile : ${addCommonScript}"
+            th:src="@{/common/js/{file}.js(file=${jsFile})"></script>
+
+    <!-- 공통적인 스크립트 추가 E -->
+
+    <!-- 관리자(관리자 공통)에만 적용되는 스크립트 추가 S -->
+    <script th:src="@{/mobile/js/common.js}"></script>
+    <script th:each="jsFile : ${addScript}"
+            th:src="@{/mobile/js/{file}.js(file=${jsFile})}"></script>
+
+    <!-- 관리자(관리자 공통)에만 적용되는 스크립트 추가 E -->
+
+    <!-- 이 명칭을 가지고 이 영역을 치환만 하면 스크립트가 추가된다 -->
+    <!-- 스크립트가 속성을 통해서 추가 못할 때, 내용만 찾을 수 있게 영역만 잡아주면 된다 -->
+    <th:block layout:fragment="addScript"></th:block>
+</head>
+<body>
+<!-- th:replace의 뜻 -->
+<!-- 현재 <header> 태그의 내용을 "admin/outlines/header"라는
+                      폴더 안에 있는"common"이라는 템플릿 파일의 내용으로 대체 -->
+<!-- ~는 상대 경로, 현재 위치에서 ::이후에 있는 파일명 위치를 설명 -->
+    <header th:replace="~{mobile/outlines/header::common}"></header>
+
+    <main layout:fragment="content"></main>
+    <!-- 아래에 실제 페이지의 내용을 적으면 content에 삽입된다 -->
+
+    <footer th:replace="~{mobile/outlines/footer::common}"></footer>
+</body>
+</html>

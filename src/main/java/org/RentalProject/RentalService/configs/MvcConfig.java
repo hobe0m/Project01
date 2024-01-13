@@ -1,4 +1,4 @@
-package org.RentalProject.configs;
+package org.RentalProject.RentalService.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.ResourceBundle;
 
 @Configuration
 // 설정한 파일의 경로를 추가해서 연결
