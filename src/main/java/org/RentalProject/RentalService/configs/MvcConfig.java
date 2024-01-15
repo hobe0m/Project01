@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -38,5 +39,13 @@ public class MvcConfig implements WebMvcConfigurer {
         ms.setBasenames("messages.commons", "messages.validation", "messages.errors");
 
         return ms;
+    }
+
+    // HiddenHttpMethodFilter 메소드를 사용하면, 양식에서 _method를 사용하면 요청 메소드가 변경된다
+    // GET, POST 이 외에 PUT, PATCH, DELETE도 사용할 수 있다.
+    // Bean을 사용해 스프링 컨테이너에 의해 관리되고 하여, 컨트롤러나 다른 구성 요소에서 이 필터를 사용할 수 있게 한다.
+    @Bean
+    public HiddenHttpMethodFilter httpMethodFilter() {
+        return new HiddenHttpMethodFilter();
     }
 }

@@ -1,0 +1,24 @@
+<!--
+    에러페이지가 기본적으로 담겨 있는 내장된 변수들
+    에러페이지에 대한 정보를 더 자세하게 알려준다.
+
+    status : 응답 코드(에러 코드 번호)
+    path : URL 경로
+    message : 오류 메세지
+    method : 요청 방식
+    error : 에러에 대한 더 자세한 정보 제공
+    timestamp : 오류가 발생한 시간 제공
+-->
+
+<!-- post가 없는데, post로 값을 넘겼을 때, get이 없는데 get으로 값을 가져오려고 할 때 뜸 -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+
+<main layout:fragment="content">
+    <!-- error/_content 템플릿에서 'common' fragment를 현재 위치에 대체한다. -->
+    <th:block th:replace="~{error/_content::common}"></th:block>
+</main>
+</html>
