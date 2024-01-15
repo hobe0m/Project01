@@ -6,12 +6,19 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 // 설정한 파일의 경로를 추가해서 연결
+@EnableJpaAuditing
+/*
+ 엔터티의 생성일자(@CreatedDate), 수정일자(@LastModifiedDate), 생성자(@CreatedBy),
+ 수정자(@LastModifiedBy)등의 정보를 자동으로 관리
+ 설정을 해주어야 @EntityListeners(AuditingEntityListener.class) 사용 가능
+ */
 @EnableConfigurationProperties(FileProperties.class)
 public class MvcConfig implements WebMvcConfigurer {
 
