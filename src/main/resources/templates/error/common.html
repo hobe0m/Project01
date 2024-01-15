@@ -1,0 +1,12 @@
+<!--  400번대 외 다른 에러 -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+
+<main layout:fragment="content">
+    <!-- error/_content 템플릿에서 'common' fragment를 현재 위치에 대체한다. -->
+    <th:block th:replace="~{error/_content::common}"></th:block>
+</main>
+</html>

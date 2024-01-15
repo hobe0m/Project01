@@ -1,0 +1,49 @@
+server:
+  port: 3000
+
+spring:
+
+  # 파일 업로드 용량 설정
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 60MB
+
+  # 데이터베이스 설정
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: PROJECT01
+    password: PROJECT01
+
+  # JPA 설정
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true # 쿼리 보여주는 코드
+        format_sql: true # 쿼리 포맷
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.OracleDialect # DB마다 문법적 차이가 있는 것을을 알아서 해석해 준다.
+
+    hibernate:
+      ddlAuto: create # 처음 시작할 때는 항상 만드는 create, 수정 단계 진입 시 update
+
+  # 타임리프 설정
+  thymeleaf:
+    cache: true
+    prefix: classpath:/template/
+
+# 로거 설정
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+# 파일 업로드 경로 설정
+file:
+  upload:
+    path: /home/project01/uploads01/
+    url: /uploads01/
