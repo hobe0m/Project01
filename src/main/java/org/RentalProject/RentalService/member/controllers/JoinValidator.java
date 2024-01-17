@@ -1,8 +1,10 @@
 package org.RentalProject.RentalService.member.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.RentalProject.RentalService.commons.validators.PasswordValidator;
 import org.RentalProject.RentalService.member.repositories.MemberRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -11,8 +13,9 @@ import org.springframework.validation.Validator;
 @Component
 // 의존성을 주입하기 위해 사용
 @RequiredArgsConstructor
-public class JoinValidator implements Validator {
+public class JoinValidator implements Validator, PasswordValidator {
     // 추상메소드가 정의되어 있어, 필수로 재정의 해준다.
+    // 유효성 확인을 위한 Validator, PasswordValidator 구현
 
     // 이메일, 아이디의 중복 체크를 하기 위해 DB에 접근할 수 있게 해주는 Repository 주입
     // 정의된 메소드가 없기 때문에, 직접 repository에 가서 정의해주어야 한다.
@@ -51,6 +54,45 @@ public class JoinValidator implements Validator {
 
         // 1. 이메일, 아이디 중복 여부 체크
 
+        // errors가 가지고 있는 메소드로 rejectValue(String field, String errorCode);라는
+        // 매개변수를 기본값으로 갖는다.
+        // 오류가 발생하면 객체 생성 후 해당 필드에 에러 코드의 오류를 추가한다.
+        // 에러 코드에 해당하는 실제 오류 메세지는 메세지 소스에서 찾는다.
+        // StringUtils.hasText(email) && memberRepository.exists(email)
+        //  - email의 값이 null 혹은 비어있거나, 이미 DB에 있는 값이면 true 즉, 오류 발생
+        if(StringUtils.hasText(email) && memberRepository.existsByEmail(email)) {
+            errors.rejectValue("email", "Duplicated");
+        }
+
+        if (StringUtils.hasText(id) && memberRepository.existsById(id)) {
+            errors.rejectValue("id", "Duplicated");
+        }
+
+        // 2. 비밀번호 복잡성 체크 - 대소문자 각각 1개 포함, 숫자 1개 이상 포함, 특수문자 1개 이상 포함
+        // 비회원 주문서 확인 시, 비회원 게시글 조회 시에도 사용한다.
+        // 그 때의 비밀번호의 복잡성 설정 가능
+
+        // 공통 Validator에 3가지로 나눠서 설정해놓아서, 쓰고 싶은 것만 사용해도 된다.
+        if (StringUtils.hasText(password)
+           && (!alphaCheck(password, true) && !numberCheck(password)
+           && !specialCharsCheck(password))) {
+
+            errors.rejectValue("password", "Complexity");
+        }
+
+
+
+
+        // 3. 비밀번호, 비밀번호 확인 일치 여부 체크
+        
+        // 우선 비밀번호와 비밀번호 확인 값이 존재하는 지 확인
+        // 그 후 비밀번호와 비밀번호 확인의 값이 일치하지 않으면 에러 발생
+        // password와 confirmPassword의 필드가 다르기 때문에 Mismatch.password로 필드를 지정해준다.
+
+        if (StringUtils.hasText(password) && StringUtils.hasText(confirmPassword)
+            && !password.equals(confirmPassword)) {
+            errors.rejectValue("confirmPassword", "Mismatch.password");
+        }
 
     }
 }

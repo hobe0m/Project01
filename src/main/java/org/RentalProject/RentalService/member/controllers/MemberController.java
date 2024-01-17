@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.RentalProject.RentalService.commons.Utils;
 import org.RentalProject.RentalService.commons.exceptions.ExceptionProcessor;
+import org.RentalProject.RentalService.member.service.JoinService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController implements ExceptionProcessor {
+
     private final Utils utils; // 의존성 주입
+
+    // private final JoinValidator joinValidator; 필요 없어짐
+    private final JoinService joinService; // JoinService로 대체해서 의존성 주입
     
     // 회원가입쪽
     @GetMapping("/join")
@@ -71,6 +76,14 @@ public class MemberController implements ExceptionProcessor {
         // Errors가 아닌 Errors의 자식인 BindingResult를 사용해도 된다.
         //  - 사용하면 동일한 결과를 내지만 더 확장성 있고, 보다 많은 메소드를 활용할 수 있다.
         // @Valid : 정의해놓은 제약조건에 따라 유효성 검사를 실시한다.
+
+        // JoinService와 MemberController 연동
+        // 위쪽에 필드 생성 후,
+        // joinValidator.validate(form, errors);를 - JoinService로 대체해서 연동
+
+        // 매개변수는 커맨더 객체와 에러 객체
+        // 에러가 있으면 errors가 참이기 때문에 tpl로 가고, 없으면 login 페이지로 간다.
+        joinService.process(form, errors);
 
         if (errors.hasErrors()) {
             return utils.tpl("member/join");

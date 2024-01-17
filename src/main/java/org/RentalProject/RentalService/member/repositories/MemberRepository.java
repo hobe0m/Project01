@@ -1,6 +1,7 @@
 package org.RentalProject.RentalService.member.repositories;
 
 import org.RentalProject.RentalService.member.entities.Member;
+import org.RentalProject.RentalService.member.entities.QMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
@@ -122,16 +123,28 @@ public interface MemberRepository extends JpaRepository<Member, Long>,
         this.name = name;
         this.age = age;
     }
+    */
+
+    /*
+    ==================================== 에러 코드 ====================================
+    */
 
     default boolean existsByEmail(String email) {
+        // Qmember는 Querydsl이 생성한 Query Type 클래스이며, 엔티티 클래스 Member를 기반으로 생성
+        // QMember 인스턴스 생성 후, member 변수에 할당
         QMember member = QMember.member;
-
+        
+        // Querydsl의 Predicate로, email 필드가 주어진 email 값과 동일한지 검사
+        // member.email = Member의 email 필드,  eq(email) : 사용자가 전달한 이메일 값
+        // 해당 조건을 만족하는 데이터가 존재하는지 여부를 반환
+        // 쉽게 말해 주어진 이메일과 일치하는 멤버가 데이터베이스에 존재하는지 확인
+        // true라면 이미 해당 이메일을 가진 멤버가 존재
         return exists(member.email.eq(email));
     }
 
     default boolean existsById(String id) {
+        QMember member = QMember.member;
 
+        return exists(member.id.eq(id));
     }
-
-    */
 }
