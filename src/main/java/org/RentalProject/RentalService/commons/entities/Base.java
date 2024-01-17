@@ -1,7 +1,6 @@
-package org.RentalProject.RentalService.entities;
+package org.RentalProject.RentalService.commons.entities;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -25,7 +24,7 @@ import java.time.LocalDateTime;
  주로 생성일자(createdAt), 수정일자(updatedAt)을 자동으로 업데이트 하는데에 사용
  @CreatedDate, @LastModifiedDate등을 컬럼에 사용해서 정의
 
- @MappedSuperclass 
+ @MappedSuperclass
  @Entity가 있고, @MappedSuperclass를 가진 클래스를 상속하면 @MappedSuperclass의 매핑 정보를 상속받는다.
  즉, 부모 클래스에 정의된 매핑 정보가 하위 엔티티 클래스에 적용되어 데이터베이스 테이블에 매핑된다.
  부모 클래스는 테이블을 생성하지 않고, 매핑 정보만 제공한다.
