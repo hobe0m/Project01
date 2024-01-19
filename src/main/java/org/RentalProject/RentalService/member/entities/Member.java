@@ -72,15 +72,15 @@ public class Member extends Base {
     @Column(length = 30, nullable = false)
     private String name; /* 이름 */
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(length = 50)
     private String userName; /* 닉네임 */
 
     @Column(length = 50)
     private String birth; /* 생년월일 */
 
-    @Column(length = 150, nullable = false)
+    @Column(length = 150)
     private String address; /* 주소 */
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private int tel; /* 전화번호 */
 }

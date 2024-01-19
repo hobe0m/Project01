@@ -43,7 +43,7 @@ public class MemberController implements ExceptionProcessor {
     // private final JoinValidator joinValidator; 필요 없어짐
     private final JoinService joinService; // JoinService로 대체해서 의존성 주입
     
-    // 회원가입쪽
+    // 회원 가입쪽
     @GetMapping("/join")
     public String join(@ModelAttribute RequestJoin form) {
         /*
@@ -109,5 +109,5 @@ public class MemberController implements ExceptionProcessor {
 
         return utils.tpl("member/login");
     }
-
 }
+

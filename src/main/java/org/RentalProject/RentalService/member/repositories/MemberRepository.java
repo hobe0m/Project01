@@ -125,10 +125,6 @@ public interface MemberRepository extends JpaRepository<Member, Long>,
     }
     */
 
-    /*
-    ==================================== 에러 코드 ====================================
-    */
-
     default boolean existsByEmail(String email) {
         // Qmember는 Querydsl이 생성한 Query Type 클래스이며, 엔티티 클래스 Member를 기반으로 생성
         // QMember 인스턴스 생성 후, member 변수에 할당
