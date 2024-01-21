@@ -32,4 +32,15 @@ public class mypageController implements ExceptionProcessor {
 
     }
     // 장바구니 결제 페이지 E //
+
+    // 결제 완료 페이지 S //
+    @GetMapping("/paymentFinish")
+    public String paymentFinish(Model model) {
+
+        System.out.println("결제 완료 페이지");
+
+        return "front/mypage/paymentFinish";
+
+    }
+    // 결제 완료 페이지 E //
 }

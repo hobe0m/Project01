@@ -21,7 +21,7 @@
             <div class="infoWrap">
                 <div class="topInfo">
                     <div class="leftInfo">
-                        <h4 class="">배송지</h4>
+                        <h4 class="leftText">배송지</h4>
                     </div>
                     <div class="rightInfo">
                         <div class="changeBtn">
@@ -34,7 +34,128 @@
                         </div>
                     </div>
                 </div>
-                <div class="innerInfo"></div>
+                <div class="innerInfo">
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="order1">이름</label>
+                            <input type="text" id="order1" name="order1" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="order2">번호</label>
+                            <input type="text" id="order2" name="order2" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="order3">주소</label>
+                            <input type="text" id="order3" name="order3" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="order4">배송메모</label>
+                            <input type="text" id="order4" name="order4" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="infoWrap">
+                <div class="topInfo">
+                    <div class="leftInfo">
+                        <h4 class="leftText">주문자</h4>
+                    </div>
+                    <div class="rightInfo">
+                        <div class="toggleSvg">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="#48484A" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="innerInfo">
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="order5">이름</label>
+                            <input type="text" id="order5" name="order5" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="order6">번호</label>
+                            <input type="text" id="order6" name="order6" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="imageTextWrap">
+                        <div class="imageWrap">
+                            <img src="" alt="주문상품 이미지"/>
+                        </div>
+                        <div class="rightTextWrap">
+                            <div class="textWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="order7">상품명</label>
+                                    <input type="text" id="order7" name="order7" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="textWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="order8">렌탈가격</label>
+                                    <input type="text" id="order8" name="order8" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="order9">주문금액</label>
+                            <input type="text" id="order9" name="order9" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paymentInfo">
+                <div class="paymentTitle">
+                    <h4 class="paymentTitleText">결제수단</h4>
+                </div>
+                <div class="paymentSelect">
+                    <div class="payment">
+                        <input type="radio" id="account" name="paymentRadio">
+                        <label for="account">계좌결제</label>
+                    </div>
+                    <div class="payment">
+                        <input type="radio" id="creditCard" name="paymentRadio">
+                        <label for="creditCard">카드결제</label>
+                    </div>
+                </div>
+                <div class="paymentHow">
+                    <div class="cardListWrap">
+                        <h4 class="cardListText">등록된 카드 목록</h4>
+                        <div class="cardList">
+                            <div class="textWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="order10">카드1</label>
+                                    <input type="text" id="order10" name="order10" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="textWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="order11">카드2</label>
+                                    <input type="text" id="order11" name="order11" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="textWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="order12">카드3</label>
+                                    <input type="text" id="order12" name="order12" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="paymentBtn">
+                        <button type="submit">결제하기</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

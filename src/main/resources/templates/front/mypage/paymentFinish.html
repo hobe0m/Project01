@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>결제 완료 페이지</title>
+    <th:block layout:fragment="addCss">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/mypage/paymentFinish.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/common/reset.css}">
+    </th:block>
+    <th:block layout:fragment="addScript">
+        <script type="text/javascript" th:src="@{/js/mypage/paymentFinish.js}"></script>
+    </th:block>
+</head>
+<body>
+<main layout:fragment="content">
+    <h1 th:text="'결제 완료 페이지'"></h1>
+    <div class="paymentFinish">
+        <form>
+            <div class="paymentFinishText">결제완료</div>
+            <div class="paymentFinishMsg">주문이 완료 되었습니다.</div>
+            <div class="paymentFinishWrap">
+                <div class="textWrap">
+                    <div class="inputWrap">
+                        <label class="left-text" for="order12">주문번호</label>
+                        <input type="text" id="order12" name="order12" th:value="${defaultName}" />
+                    </div>
+                </div>
+                <div class="textWrap">
+                    <div class="inputWrap">
+                        <label class="left-text" for="order13">배송지</label>
+                        <input type="text" id="order13" name="order13" th:value="${defaultName}" />
+                    </div>
+                </div>
+                <div class="textWrap">
+                    <div class="inputWrap">
+                        <label class="left-text" for="order14">배송메모</label>
+                        <input type="text" id="order14" name="order14" th:value="${defaultName}" />
+                    </div>
+                </div>
+            </div>
+            <div class="homeBtn">
+                <button>홈으로</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>
