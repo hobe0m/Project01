@@ -1,1 +1,7 @@
 /* Content-Type: text/css */
+
+.inputWrap {
+        width:100%;
+        display:flex;
+        justify-content: space-between;
+}

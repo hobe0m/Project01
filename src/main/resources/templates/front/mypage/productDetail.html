@@ -17,130 +17,178 @@
 <body>
 <main layout:fragment="content">
     <h1 th:text="'주문 상세 페이지'"></h1>
-
     <div class="order-detail">
-        <div class="detailWrap">
-            <div class="leftOne">
-                <h4 class="left-text">주문상세</h4>
-            </div>
-        </div>
-        <div class="detailWrap">
-            <div class="leftTwo">
-                <div class="leftTextWrap">
-                    <div class="textWrap">
-                        <h4 class="left-text">주문번호</h4>
-                        <div></div>
-                    </div>
-                    <div class="textWrap">
-                        <h4 class="left-text">주문날짜</h4>
-                        <div></div>
-                    </div>
-                    <div class="textWrap">
-                        <h4 class="left-text">주문시간</h4>
-                        <div></div>
-                    </div>
-                </div>
-                <div class="buyReceiptWrap">
-                    <div class="buyBtn">
-                        <button>구매영수증</button>
-                    </div>
-                    <div class="receiptDetailWrap">
-                        <div class="receiptDetail">
-                            <h4 class="receiptDetailInner">주문번호</h4>
-                            <div></div>
-                        </div>
-                        <div class="receiptDetail">
-                            <h4 class="receiptDetailInner">거래일시</h4>
-                            <div></div>
-                        </div>
-                        <div class="receiptDetail">
-                            <h4 class="receiptDetailInner">상품명</h4>
-                            <div></div>
-                        </div>
-                        <div class="receiptDetail">
-                            <h4 class="receiptDetailInner">합계</h4>
-                            <div></div>
-                        </div>
-                        <div class="receiptDetail">
-                            <h4 class="receiptDetailInner">회사명</h4>
-                            <div></div>
-                        </div>
-                        <div class="receiptDetail">
-                            <h4 class="receiptDetailInner">서명</h4>
-                            <div></div>
-                        </div>
-                    </div>
+        <form>
+            <div class="detailWrap">
+                <div class="leftOne">
+                    <h4 class="left-text">주문상세</h4>
                 </div>
             </div>
-        </div>
-        <div class="detailWrap">
-            <div class="leftThree">
-                <div class="leftThreeInner">
-                    <div class="leftImage">
-                        <img src="" alt="이미지"/>
-                    </div>
+            <div class="detailWrap">
+                <div class="leftTwo">
                     <div class="leftTextWrap">
                         <div class="textWrap">
-                            <h4 class="left-text">상품명</h4>
+                            <div class="inputWrap">
+                                <label class="left-text" for="name1">주문번호</label>
+                                <input type="text" id="name1" name="name1" th:value="${defaultName}" />
+                            </div>
                         </div>
                         <div class="textWrap">
-                            <h4 class="left-text">가격</h4>
+                            <div class="inputWrap">
+                                <label class="left-text" for="name2">주문날짜</label>
+                                <input type="text" id="name2" name="name2" th:value="${defaultName}" />
+                            </div>
                         </div>
-                        <div class="leftWrap">
-                            <h4 class="left-text">수량</h4>
+                        <div class="textWrap">
+                            <div class="inputWrap">
+                                <label class="left-text" for="name3">주문시간</label>
+                                <input type="text" id="name3" name="name3" th:value="${defaultName}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buyReceiptWrap">
+                        <div class="buyBtn">
+                            <button>구매영수증</button>
+                        </div>
+                        <div class="receiptDetailWrap">
+                            <div class="receiptDetail">
+                                <div class="inputWrap">
+                                    <label class="receiptDetailInner" for="name4">주문번호</label>
+                                    <input type="text" id="name4" name="name4" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="receiptDetail">
+                                <div class="inputWrap">
+                                    <label class="receiptDetailInner" for="name5">거래일시</label>
+                                    <input type="text" id="name5" name="name5" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="receiptDetail">
+                                <div class="inputWrap">
+                                    <label class="receiptDetailInner" for="name6">상품명</label>
+                                    <input type="text" id="name6" name="name6" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="receiptDetail">
+                                <div class="inputWrap">
+                                    <label class="receiptDetailInner" for="name7">합계</label>
+                                    <input type="text" id="name7" name="name7" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="receiptDetail">
+                                <div class="inputWrap">
+                                    <label class="receiptDetailInner" for="name8">회사명</label>
+                                    <input type="text" id="name8" name="name8" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="receiptDetail">
+                                <div class="inputWrap">
+                                    <label class="receiptDetailInner" for="name9">서명</label>
+                                    <input type="text" id="name9" name="name9" th:value="${defaultName}" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="right">
-                    <div class="rightBtn">
-                        <button>리뷰쓰기</button>
+            </div>
+            <div class="detailWrap">
+                <div class="leftThree">
+                    <div class="leftThreeInner">
+                        <div class="leftImage">
+                            <img src="" alt="이미지"/>
+                        </div>
+                        <div class="leftTextWrap">
+                            <div class="textWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="name10">상품명</label>
+                                    <input type="text" id="name10" name="name10" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="textWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="name11">가격</label>
+                                    <input type="text" id="name11" name="name11" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                            <div class="leftWrap">
+                                <div class="inputWrap">
+                                    <label class="left-text" for="name12">수량</label>
+                                    <input type="text" id="name12" name="name12" th:value="${defaultName}" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rightBtn">
-                        <button>배송조회</button>
+                    <div class="right">
+                        <div class="rightBtn">
+                            <button>리뷰쓰기</button>
+                        </div>
+                        <div class="rightBtn">
+                            <button>배송조회</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="detailWrap">
-            <div class="left">
-                <div class="textWrap">
-                    <h4 class="left-text">배송지정보</h4>
-                    <div></div>
+            <div class="detailWrap">
+                <div class="left">
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="name13">배송지 정보</label>
+                            <input type="text" id="name13" name="name13" th:value="${defaultName}" />
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="detailWrap">
-            <div class="left">
-                <div class="textWrap">
-                    <h4 class="left-text">수령인</h4>
-                </div>
-                <div class="textWrap">
-                    <h4 class="left-text">연락처</h4>
-                </div>
-                <div class="textWrap">
-                    <h4 class="left-text">배송지</h4>
-                </div>
-                <div class="textWrap">
-                    <h4 class="left-text">배송메모</h4>
+            <div class="detailWrap">
+                <div class="left">
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="name14">수령인</label>
+                            <input type="text" id="name14" name="name14" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="name15">연락처</label>
+                            <input type="text" id="name15" name="name15" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="name16">배송지</label>
+                            <input type="text" id="name16" name="name16" th:value="${defaultName}" />
+                        </div>
+                    </div>
+                    <div class="textWrap">
+                        <div class="inputWrap">
+                            <label class="left-text" for="name17">배송메모</label>
+                            <input type="text" id="name17" name="name17" th:value="${defaultName}" />
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="detailWrap">
-            <div class="textWrap">
-                <h4 class="left-text">주문금액</h4>
-                <div>금액</div>
+            <div class="detailWrap">
+                <div class="textWrap">
+                    <div class="inputWrap">
+                        <label class="left-text" for="name18">주문금액</label>
+                        <input type="text" id="name18" name="name18" th:value="${defaultName}" />
+                    </div>
+                </div>
+                <div class="textWrap">
+                    <div class="inputWrap">
+                        <label class="left-text" for="name19">배송비</label>
+                        <input type="text" id="name19" name="name19" th:value="${defaultName}" />
+                    </div>
+                </div>
             </div>
-            <div class="textWrap">
-                <h4 class="left-text">배송비</h4>
-                <div>금액</div>
+            <div class="detailWrap">
+                <div class="textWrap">
+                    <div class="inputWrap">
+                        <label class="left-text" for="name20">총</label>
+                        <input type="text" id="name20" name="name20" th:value="${defaultName}" />
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="detailWrap">
-            <div class="textWrap">
-                <h4 class="left-text">총</h4>
-                <div>금액</div>
-            </div>
-        </div>
+        </form>
     </div>
 </main>
 </body>

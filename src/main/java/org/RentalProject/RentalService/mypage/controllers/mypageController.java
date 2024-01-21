@@ -21,4 +21,15 @@ public class mypageController implements ExceptionProcessor {
         return "front/mypage/productDetail";
     }
     // 주문 상세 페이지 연결 추가 E //
+
+    // 장바구니 결제 페이지 S //
+    @GetMapping("/orderInCart")
+    public String orderInCart(Model model) {
+
+        System.out.println("장바구니 결제 페이지");
+
+        return "front/mypage/orderInCart";
+
+    }
+    // 장바구니 결제 페이지 E //
 }

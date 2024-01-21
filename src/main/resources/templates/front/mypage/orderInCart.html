@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니에서 주문하기 버튼 누를 때(결제)</title>
+    <th:block layout:fragment="addCss">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/mypage/orderInCart.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/common/reset.css}">
+    </th:block>
+    <th:block layout:fragment="addScript">
+        <script type="text/javascript" th:src="@{/js/mypage/orderInCart.js}"></script>
+    </th:block>
+</head>
+<body>
+<main layout:fragment="content">
+    <h1 th:text="'장바구니에서 주문 버튼 누르기'"></h1>
+    <div class="orderInCart">
+        <form>
+            <div class="infoWrap">
+                <div class="topInfo">
+                    <div class="leftInfo">
+                        <h4 class="">배송지</h4>
+                    </div>
+                    <div class="rightInfo">
+                        <div class="changeBtn">
+                            <button>변경</button>
+                        </div>
+                        <div class="toggleSvg">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="#48484A" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="innerInfo"></div>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>
