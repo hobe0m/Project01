@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- th:block : 코드를 하나의 덩어리로 묶는다, 구조를 해치치 않고 특정 부분에만 적용할 수 있게 하기 위해 -->
-<!-- th:fragment : 다른 곳에서 th:include를 통해 재사용할 수 있는 부분, th:include = "template :: 템플릿명"으로 가져다 쓴다. -->
-<!--
-    th:fragment를 이해하기 위한 예시 코드
+    <!-- th:block : 코드를 하나의 덩어리로 묶는다, 구조를 해치치 않고 특정 부분에만 적용할 수 있게 하기 위해 -->
+    <!-- th:fragment : 다른 곳에서 th:include를 통해 재사용할 수 있는 부분, th:include = "template :: 템플릿명"으로 가져다 쓴다. -->
+    <!--
+        th:fragment를 이해하기 위한 예시 코드
 
-    <th:fragment th:fragment="commonSection">
-    <p>This is a common section.</p>
-    </th:fragment>
+        <th:fragment th:fragment="commonSection">
+        <p>This is a common section.</p>
+        </th:fragment>
 
-    <div th:include="template :: commonSection"></div>
--->
-<th:block th:fragment="common">
-    <h1>
-        <th:block th:text="${status}"></th:block>
-        <th:block th:if="${method != null}" th:text="${method}"></th:block>
-        <th:block th:text="${path}"></th:block>
-    </h1>
-    <div th:text="${message}"></div>
-</th:block>
+        <div th:include="template :: commonSection"></div>
+    -->
+    <th:block th:fragment="common">
+        <h1>
+            <th:block th:text="${status}"></th:block>
+            <th:block th:if="${method != null}" th:text="${method}"></th:block>
+            <th:block th:text="${path}"></th:block>
+        </h1>
+        <div th:text="${message}"></div>
+    </th:block>
 </html>

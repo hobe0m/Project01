@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<!-- 레이아웃 기능 추가 -->
+      <!-- 레이아웃 기능 추가 -->
 
-<!-- Model 쪽에 추가해야 사용(조회) 가능, 즉 컨트롤러가 있어야 사용(조회)가능하다. -->
-<!-- url과 template만 연동할 수도 있다 - addViewControllers를 사용하면 된다.  -->
-<!-- 간단한 url과 template 연동하기 위함, 이걸 사용하면 Model을 통해서 보진 못한다. -->
+      <!-- Model 쪽에 추가해야 사용(조회) 가능, 즉 컨트롤러가 있어야 사용(조회)가능하다. -->
+      <!-- url과 template만 연동할 수도 있다 - addViewControllers를 사용하면 된다.  -->
+      <!-- 간단한 url과 template 연동하기 위함, 이걸 사용하면 Model을 통해서 보진 못한다. -->
 
 <head>
     <!-- 공통으로 필요한 것 추가 -->
@@ -81,11 +81,11 @@
 <!-- 현재 <header> 태그의 내용을 "admin/outlines/header"라는
                       폴더 안에 있는"common"이라는 템플릿 파일의 내용으로 대체 -->
 <!-- ~는 상대 경로, 현재 위치에서 ::이후에 있는 파일명 위치를 설명 -->
-<header th:replace="~{front/outlines/header::common}"></header>
+    <header th:replace="~{front/outlines/header::common}"></header>
 
-<main layout:fragment="content"></main>
-<!-- 아래에 실제 페이지의 내용을 적으면 content에 삽입된다 -->
+    <main layout:fragment="content"></main>
+    <!-- 아래에 실제 페이지의 내용을 적으면 content에 삽입된다 -->
 
-<footer th:replace="~{front/outlines/footer::common}"></footer>
+    <footer th:replace="~{front/outlines/footer::common}"></footer>
 </body>
 </html>

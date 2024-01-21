@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @RequiredArgsConstructor
 public class InterceptorConfig implements WebMvcConfigurer {
-
+    
     // CommonInterceptor 필드 생성(의존성 주입을 위함, 객체 간 관계 형성)
     private final CommonInterceptor commonInterceptor;
 
