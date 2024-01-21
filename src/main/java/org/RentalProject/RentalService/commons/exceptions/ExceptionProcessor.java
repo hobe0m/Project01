@@ -1,23 +1,15 @@
-package org.RentalProject.RentalService.controllers;
+package org.RentalProject.RentalService.commons.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.RentalProject.RentalService.commons.exceptions.CommonException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-// 여러 컨트롤러가 공통으로 가져야 하는 설정(경로 지정 해주어야 한다), 예외 처리, 모델 속성 추가 등을 정의
-// @ControllerAdvice는 경로를 지정해주어야 그 경로에 있는 컨트롤러들이 영향을 받는다.
-// "org.RentalProject.RentalService.controllers" 이 경로에 있는 컨트롤러는 영향을 받음
-@ControllerAdvice("org.RentalProject.RentalService.controllers")
+public interface ExceptionProcessor {
+    // 일반 컨트롤러 쪽에 추가하면 에러페이지가 나올 수 있게 해주는 인터페이스
+    // 일반적인 컨트롤러 에러를 추가할 때 사용
 
-public class CommonController {
-
-    // Exception 또는 Exception의 하위 클래스에서 발생한 예외 처리
-    // @ExceptionHandler : 특정 컨트롤러 메소드에서 발생하는 예외를 처리하고
-    // 사용자에게 적절한 응답 생성을 할 수 있게 도와준다.
     @ExceptionHandler(Exception.class)
     // Exception e : 발생한 예외 객체(메소드 호출 시 어떤 예외가 발생했는지에 대한
     //               정보를 담고 있는 Exception 타입 객체 e가 전달된다.
@@ -26,7 +18,7 @@ public class CommonController {
     // HttpServlerResponse response : 서버에서 전송되는 응답을 다양하게 제어
     //                                예외 상황에 대한 적절한 응답 코드 설정 및
     //                                리다이렉션(페이지 이동) 수행
-    public String errorHandler(Exception e, HttpServletResponse response,
+    default String errorHandler(Exception e, HttpServletResponse response,
                                HttpServletRequest request, Model model) {
 
         // 에러 코드 500번을 우선 기본값으로 설정
