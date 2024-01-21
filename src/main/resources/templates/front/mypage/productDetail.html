@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 상세 페이지(주문 목록에서 상품 클릭 시 뜨는 창)</title>
+    <th:block layout:fragment="addCss">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/mypage/productDetail.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/common/reset.css}">
+    </th:block>
+    <th:block layout:fragment="addScript">
+        <script type="text/javascript" th:src="@{/js/mypage/productDetail.js}"></script>
+    </th:block>
+    <a th:href="@{mypage/purchaseReceipt}">구매 영수증(팝업으로 대체)</a>
+</head>
+<body>
+<main layout:fragment="content">
+    <h1 th:text="'주문 상세 페이지'"></h1>
+
+    <div class="order-detail">
+        <div class="detailWrap">
+            <div class="leftOne">
+                <h4 class="left-text">주문상세</h4>
+            </div>
+        </div>
+        <div class="detailWrap">
+            <div class="leftTwo">
+                <div class="leftTextWrap">
+                    <div class="textWrap">
+                        <h4 class="left-text">주문번호</h4>
+                        <div></div>
+                    </div>
+                    <div class="textWrap">
+                        <h4 class="left-text">주문날짜</h4>
+                        <div></div>
+                    </div>
+                    <div class="textWrap">
+                        <h4 class="left-text">주문시간</h4>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="buyReceiptWrap">
+                    <div class="buyBtn">
+                        <button>구매영수증</button>
+                    </div>
+                    <div class="receiptDetailWrap">
+                        <div class="receiptDetail">
+                            <h4 class="receiptDetailInner">주문번호</h4>
+                            <div></div>
+                        </div>
+                        <div class="receiptDetail">
+                            <h4 class="receiptDetailInner">거래일시</h4>
+                            <div></div>
+                        </div>
+                        <div class="receiptDetail">
+                            <h4 class="receiptDetailInner">상품명</h4>
+                            <div></div>
+                        </div>
+                        <div class="receiptDetail">
+                            <h4 class="receiptDetailInner">합계</h4>
+                            <div></div>
+                        </div>
+                        <div class="receiptDetail">
+                            <h4 class="receiptDetailInner">회사명</h4>
+                            <div></div>
+                        </div>
+                        <div class="receiptDetail">
+                            <h4 class="receiptDetailInner">서명</h4>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detailWrap">
+            <div class="leftThree">
+                <div class="leftThreeInner">
+                    <div class="leftImage">
+                        <img src="" alt="이미지"/>
+                    </div>
+                    <div class="leftTextWrap">
+                        <div class="textWrap">
+                            <h4 class="left-text">상품명</h4>
+                        </div>
+                        <div class="textWrap">
+                            <h4 class="left-text">가격</h4>
+                        </div>
+                        <div class="leftWrap">
+                            <h4 class="left-text">수량</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="rightBtn">
+                        <button>리뷰쓰기</button>
+                    </div>
+                    <div class="rightBtn">
+                        <button>배송조회</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detailWrap">
+            <div class="left">
+                <div class="textWrap">
+                    <h4 class="left-text">배송지정보</h4>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="detailWrap">
+            <div class="left">
+                <div class="textWrap">
+                    <h4 class="left-text">수령인</h4>
+                </div>
+                <div class="textWrap">
+                    <h4 class="left-text">연락처</h4>
+                </div>
+                <div class="textWrap">
+                    <h4 class="left-text">배송지</h4>
+                </div>
+                <div class="textWrap">
+                    <h4 class="left-text">배송메모</h4>
+                </div>
+            </div>
+        </div>
+        <div class="detailWrap">
+            <div class="textWrap">
+                <h4 class="left-text">주문금액</h4>
+                <div>금액</div>
+            </div>
+            <div class="textWrap">
+                <h4 class="left-text">배송비</h4>
+                <div>금액</div>
+            </div>
+        </div>
+        <div class="detailWrap">
+            <div class="textWrap">
+                <h4 class="left-text">총</h4>
+                <div>금액</div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
