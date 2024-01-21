@@ -17,7 +17,7 @@
                 <input type="text" name="username" th:value="${session.username}">
                 <!-- 아이디 혹은 이메일을 입력하세요로 수정해보기 -->
                 <div class="error" th:if="${session.NotBlank_username != null}"
-                     th:text="${sesson.NotBlank_username}"></div>
+                     th:text="${session.NotBlank_username}"></div>
             </dd>
         </dl>
         <dl>
