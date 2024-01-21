@@ -6,12 +6,19 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 // 설정한 파일의 경로를 추가해서 연결
+@EnableJpaAuditing
+/*
+ 엔터티의 생성일자(@CreatedDate), 수정일자(@LastModifiedDate), 생성자(@CreatedBy),
+ 수정자(@LastModifiedBy)등의 정보를 자동으로 관리
+ 설정을 해주어야 @EntityListeners(AuditingEntityListener.class) 사용 가능
+ */
 @EnableConfigurationProperties(FileProperties.class)
 public class MvcConfig implements WebMvcConfigurer {
 
@@ -24,10 +31,10 @@ public class MvcConfig implements WebMvcConfigurer {
     // fileProperties에 있는 url을 가져온 후, 하위 경로까지 모두 탐색하는 경로 설정
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-       registry.addResourceHandler(fileProperties.getUrl()
-               + "**").addResourceLocations("file:///" + fileProperties.getPath());
-               // addResourceLocations : C:uploads01로 연결
-               // /를 3개 쓰는 이유는 2개를 쓰면 하나 없어지기 때문이다.
+        registry.addResourceHandler(fileProperties.getUrl()
+                + "**").addResourceLocations("file:///" + fileProperties.getPath());
+        // addResourceLocations : C:uploads01로 연결
+        // /를 3개 쓰는 이유는 2개를 쓰면 하나 없어지기 때문이다.
 
     }
 
@@ -36,7 +43,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         ms.setDefaultEncoding("UTF-8");
-        ms.setBasenames("messages.commons", "messages.validation", "messages.errors");
+        ms.setBasenames("messages.commons", "messages.validations", "messages.errors");
 
         return ms;
     }

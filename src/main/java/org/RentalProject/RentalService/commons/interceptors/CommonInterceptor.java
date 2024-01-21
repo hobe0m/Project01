@@ -53,7 +53,7 @@ public class CommonInterceptor implements HandlerInterceptor {
         // session의 메소드인 setAttribute를 통해 앞서 처리한 device의 이름을
         // device로 저장한다.
         HttpSession session = request.getSession();
-        
+
         // setAttribute(String name(속성명), Object value(값))이 기본
         session.setAttribute("device", device);
     }

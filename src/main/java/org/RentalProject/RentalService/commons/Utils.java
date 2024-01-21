@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.ResourceBundle;
+
 // 편의 기능 만들기
 
 // @Component : Spring이 관리하는 객체라는 것을 알린다.
@@ -31,6 +33,20 @@ public class Utils {
     // request를 사용해서 바로 받아와도 된다.
     private final HttpSession session;
 
+    // 메세지를 가져오기 위해 의존성 주입, 바꾸지 않으니까 static
+    // static은 객체를 만들지 않아도 클래스가 로드될 때 실행된다.
+    // 편하게 쓰기 위해서 즉, 객체를 만들지 안하도 메소드를 사용할 수 있게 정적 메소드로 추가
+    // 따로 객체를 만들지 않아도 조회가 가능하다.
+    private static final ResourceBundle commonsBundle;
+    private static final ResourceBundle validationsBundle;
+    private static final ResourceBundle errorsBundle;
+
+    static {
+        commonsBundle = ResourceBundle.getBundle("messages.commons");
+        validationsBundle = ResourceBundle.getBundle("messages.validations");
+        errorsBundle = ResourceBundle.getBundle("messages.errors");
+    }
+
     public boolean isMobile() {
         // 모바일 수동 전환 모드 체크
         // getAttribute(String name(속성의 이름), 기본 매개변수가 속성의 이름
@@ -46,7 +62,7 @@ public class Utils {
             return device.equals("MOBILE");
         }
 
-        
+
         // 요청 헤더 - User-Agent 내용을 가지고 파악
         // User-Agent의 요청 헤더를 가져와서 모바일을 알리는 정규 표현식이 있으면 모바일 장비로 판단
         String ua = request.getHeader("User-Agent");
@@ -77,5 +93,33 @@ public class Utils {
         String prefix = isMobile() ? "mobile/" : "front/";
 
         return prefix + path;
+    }
+
+    // 객체를 만들지 않아도 직접 접근할 수 있게 하고,
+    //                  스프링에서 관리하는 객체가 아니더라도 사용 가능하게 만든다.
+    // messages에 있는 파일들을 각각 키 값을 통해 가져올 수 있도록 메소드를 만든다.
+    public static String getMessage(String code, String type) {
+        // type이 주어지지 않거나 비어있는 경우에는 validations 사용
+        // 그렇지 않으면 주어진 type을 사용
+        // 기본값을 validations로 사용하기 위함, 제일 많이 하는게 유효성 검사기 때문
+        // 입력을 하면 입력한대로 번들에 맞는 메세지를 찾게 한다.
+        type = StringUtils.hasText(type) ? type : "validations";
+
+        // 타입에 따라서 다른 번들을 가져온다.
+        ResourceBundle bundle = null;
+        if (type.equals("commons")) {
+            bundle = commonsBundle;
+        } else if (type.equals("errors")) {
+            bundle = errorsBundle;
+        } else {
+            bundle = validationsBundle;
+        }
+
+        return bundle.getString(code);
+    }
+
+    public static String getMessage(String code) {
+        // 기본적으로 유효성 검사(validations)쪽 코드를 가져오게 설정
+        return getMessage(code, null);
     }
 }
