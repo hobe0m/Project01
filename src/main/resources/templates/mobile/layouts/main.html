@@ -88,6 +88,13 @@
     <!-- 이 명칭을 가지고 이 영역을 치환만 하면 스크립트가 추가된다 -->
     <!-- 스크립트가 속성을 통해서 추가 못할 때, 내용만 찾을 수 있게 영역만 잡아주면 된다 -->
     <th:block layout:fragment="addScript"></th:block>
+
+    <!-- 레이어 팝업 스트립트 추가 S -->
+
+    <script th:src="@{/common/js/layer.js?v={v}(v=${siteConfig.cssJsVersion})}"></script>
+    <script th:src="@{/common/js/common.js?v={v}(v=${siteConfig.cssJsVersion})}"></script>
+
+    <!-- 레이어 팝업 스트립트 추가 E -->
 </head>
 <body>
 <!-- th:replace의 뜻 -->

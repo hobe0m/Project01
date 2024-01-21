@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애국가 가사</title>
+    <style>
+        #container {
+            display: block;
+        }
+
+        #btn {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        #btn.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>애국가 가사</h1>
+<p id="container">
+    동해물과 백두산이 마르고 닳도록
+    하느님이 보우하사 우리나라 만세
+    무궁화 삼천리 화려강산
+    대한 사람 대한으로 길이 보전하세
+    남산 위에 저 소나무 철갑을 두른 듯
+    바람서리 불변함은 우리 기상일세
+    무궁화 삼천리 화려강산
+    대한 사람 대한으로 길이 보전하세
+    가을 하늘 공활한데 높고 구름없이
+    밝은 달은 우리 가슴 일편단심일세
+</p>
+<button id="btn" onclick="toggleLyrics()">더보기<strong> ∨</strong></button>
+
+<script>
+    function toggleLyrics() {
+        var container = document.getElementById('container');
+        container.style.display = container.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+</body>
+</html>

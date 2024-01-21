@@ -65,6 +65,17 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    // 레이어 팝업 S //
+    public SecurityFilterChain filterChain1(HttpSecurity http) throws Exception {
+
+
+        /* 같은 서버 자원 주소는 iframe 허용 처리 */
+        http.headers(c -> c.frameOptions(f -> f.sameOrigin()));
+
+        return http.build();
+    }
+    // 레이어 팝업 E //
 }
 
 // 왜 로그인 페이지가 계속 나오는지 질문, 무력화 구현 X
