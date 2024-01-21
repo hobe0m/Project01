@@ -27,14 +27,14 @@
                         <div class="changeBtn">
                             <button>변경</button>
                         </div>
-                        <div class="toggleSvg">
+                        <div class="toggleSvg toggleSvg1">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 9L12 15L18 9" stroke="#48484A" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="innerInfo">
+                <div class="innerInfo innerInfo1">
                     <div class="textWrap">
                         <div class="inputWrap">
                             <label class="left-text" for="order1">이름</label>
@@ -67,26 +67,15 @@
                         <h4 class="leftText">주문자</h4>
                     </div>
                     <div class="rightInfo">
-                        <div class="toggleSvg">
+                        <div class="toggleSvg toggleSvg2">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 9L12 15L18 9" stroke="#48484A" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="innerInfo">
-                    <div class="textWrap">
-                        <div class="inputWrap">
-                            <label class="left-text" for="order5">이름</label>
-                            <input type="text" id="order5" name="order5" th:value="${defaultName}" />
-                        </div>
-                    </div>
-                    <div class="textWrap">
-                        <div class="inputWrap">
-                            <label class="left-text" for="order6">번호</label>
-                            <input type="text" id="order6" name="order6" th:value="${defaultName}" />
-                        </div>
-                    </div>
+                <div class="innerInfo innerInfo2">
+                    <div class="orderProductText">주문상품</div>
                     <div class="imageTextWrap">
                         <div class="imageWrap">
                             <img src="" alt="주문상품 이미지"/>
@@ -160,5 +149,82 @@
         </form>
     </div>
 </main>
+<style>
+    .rightInfo {
+        display: flex;
+    }
+    .topInfo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .orderProductText {
+        font-size: 18px;
+    }
+    .imageTextWrap {
+        margin-top: 20px;
+    }
+    .imageTextWrap .imageWrap {
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+    }
+    .imageTextWrap .rightTextWrap {
+        width: 100%;
+        margin-left: 20px;
+    }
+    .imageTextWrap {
+        display: flex;
+        align-items: center;
+    }
+    .textWrap {
+        padding: 5px 0;
+    }
+    .inputWrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .toggleSvg {
+        cursor: pointer;
+    }
+    .toggleSvg1.close {
+        transform: rotate(180deg);
+    }
+    .toggleSvg2.close {
+        transform: rotate(180deg);
+    }
+    .innerInfo1 {
+        display: none;
+    }
+    .innerInfo2 {
+        display: none;
+    }
+    .innerInfo1.active {
+        display: block;
+    }
+    .innerInfo2.active {
+        display: block;
+    }
+</style>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+    const toggleSvg1 = document.querySelector('.toggleSvg');
+    const innerInfo1 = document.querySelector('.innerInfo1');
+
+    toggleSvg1.addEventListener('click', (event) => {
+        innerInfo1.classList.toggle('active');
+        event.currentTarget.classList.toggle('close');
+        });
+
+    const toggleSvg2 = document.querySelector('.toggleSvg2');
+    const innerInfo2 = document.querySelector('.innerInfo2');
+
+    toggleSvg2.addEventListener('click', (event) => {
+        innerInfo2.classList.toggle('active');
+        event.currentTarget.classList.toggle('close');
+        });
+</script>
 </body>
 </html>
