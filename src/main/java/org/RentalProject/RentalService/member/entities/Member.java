@@ -3,12 +3,12 @@ package org.RentalProject.RentalService.member.entities;
 // Base는 공통으로 사용할 속성이기 때문에 상속받는다.
 // 그것이 Base의 생성이유이다.
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.RentalProject.RentalService.commons.entities.Base;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  @Builder
@@ -83,4 +83,12 @@ public class Member extends Base {
 
     @Column(length = 50)
     private int tel; /* 전화번호 */
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Authorities> authorities = new ArrayList<>();
+    // authorities는 Authoritie 객체들을 담는 리스트이며
+    // 이 리스트는 초기에는 비어있지만, 필요한 경우 authorities에
+    // Authoritie 객체를 추가하거나 제거할 수 있다.
+    // OneToMany이기 때문이다.
+    // Authority가 주인이므로 member에 mappedBy = "member"를 써준다.
 }
