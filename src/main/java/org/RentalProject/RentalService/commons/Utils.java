@@ -41,6 +41,8 @@ public class Utils {
     private static final ResourceBundle validationsBundle;
     private static final ResourceBundle errorsBundle;
 
+    // static쪽 초기화, 처음부터 할 수 있다.
+    // 객체를 만들지 않아도 클래스가 로드돨 때 시작되기 때문에
     static {
         commonsBundle = ResourceBundle.getBundle("messages.commons");
         validationsBundle = ResourceBundle.getBundle("messages.validations");

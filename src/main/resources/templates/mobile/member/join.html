@@ -5,6 +5,77 @@
 <!-- layout:decorate="~{admin/layouts/main"} 현재 페이지를 admin/layouts/main"의 레이아웃으로 꾸며라 -->
 <main layout:fragment="content">
     <!-- main의 내용을 fragment로 정의하여 content를 다른 곳에서도 쓸 수 있게 정의 -->
-    <h1>가입하기(Mobile)</h1>
+    <h1 th:text="#{회원가입}"></h1>
+
+    <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off"
+          th:object="${requestJoin}">
+        <div class="error global" th:each="err : ${#fields.globalErrors()}"
+             th:text="${err}"></div>
+
+        <!--
+            dl(Definition List) : 정의 목록을 감싸는 태그, 주로 용어와 그에 대한 정의 표시
+            dt(Definition Term) : 정의 목록에서 용어(단어 또는 용어)를 정의하는 태그
+                                  dl 내부에서 사용되며 각 용어에 대한 정의(dd)가 뒤에 따른다.
+            dd(Definition Description) : dt에서 정의한 용어에 대한 실제 정의나 설명을 담는 태그
+                                         dl 내에서 사용되어 dt와 함께 사용된다.
+        -->
+
+                <input type="text" name="email" th:field="*{email}" th:placeholder="#{이메일}">
+                <div class="error" th:each="err : ${#fields.errors('email')}"
+                     th:text="${err}"></div>
+                <!--
+                    th:field를 쓰기 위해서 th:object로 커맨드 객체를 연동할 필요가 있다.
+                    th:field를 사용하면, 타임리프는 해당 필드에 대한 이름과 값을 자동으로 생성하여
+                    HTML 폼 요소에 할당한다.
+                    이를 통해 사용자가 제출한 폼 데이터를 커맨드 객체에 자동으로 매핑할 수 있다.
+
+                    th:field="*{email}"에서 *{}는 th:object로 지정된 객체를 의미하고
+                    여기서는 커맨드 객체인 RequestJoin을 참조한다.
+                    이렇게 해서 타임리프는 email 필드를 찾아 해당 값으로 HTML 폼 요소를 생성한다.
+
+                    th:field를 사용하기 위해 th:object로 커맨드 객체를 연동하여 해당 객체 내의
+                    필드에 접근할 수 있도록 설정해야 한다.
+
+                    th:field로 커맨드 객체의 필드명을 가져와서 HTML 폼 요소의 name에 할당하고,
+                    이를 통해 사용자가 가져온 값을 해당 필드에 타임리프가 자동으로 매핑한다.
+                    따라서 HTML 폼이 커맨드 객체의 필드명과 사용자의 입력값으로 채워진다.
+                -->
+
+        <!-- 형식화 하는 부분이 나머지 필드들도 비슷하기 때문에 복사해서 내용만 수정 -->
+
+                <input type="text" name="id" th:field="*{id}" th:placeholder="#{아이디}">
+                <div class="error" th:each="err : ${#fields.errors('id')}"
+                     th:text="${err}"></div>
+
+                <input type="password" name="password" th:field="*{password}" th:placeholder="#{비밀번호}">
+                <div class="error" th:each="err : ${#fields.errors('password')}"
+                     th:text="${err}"></div>
+
+                <input type="password" name="confirmPassword" th:field="*{confirmPassword}" th:placeholder="#{비밀번호_확인}">
+                <div class="error" th:each="err : ${#fields.errors('confirmPassword')}"
+                     th:text="${err}"></div>
+
+                <input type="text" name="name" th:field="*{name}" th:placeholder="#{회원명}">
+                <div class="error" th:each="err : ${#fields.errors('name')}"
+                     th:text="${err}"></div>
+
+        <!-- 나중에 추가할 부분 -->
+        <div th:text="${회원가입_약관}"></div>
+        <div class="terms">약관이 들어갈 자리</div>
+        <div class="terms_agree">
+            <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
+            <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
+            <!--
+             - 여기서 for 속성은 라벨이 어떤 입력 필드와 연결되어 있는지를 나타낸다.
+             - agree는 해당 입력 필드(input)의 id 속성값이다.
+             - 즉 agree를 id로 가지는 입력필드와 라벨이 연결된다.
+             - 사용자가 라벨을 클릭하여 체크박스를 선택/해제할 수 있다.
+            -->
+            <div class="error" th:each="err : ${#fields.errors('agree')}"
+                 th:text="${err}"></div>
+        </div>
+
+        <button type="submit" th:text="#{가입하기}"></button>
+    </form>
 </main>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{front/layouts/main}">
+      layout:decorate="~{mobile/layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="#{로그인}"></h1>
     <!--
@@ -12,26 +12,19 @@
         <!-- redirect 사용 후 개발자 도구로 요소 확인 시 존재하면 잘 등록된 것 -->
         <input type="hidden" name="redirectURL"
                th:if="${param.redirectURL != null}" th:value="${param.redirectURL}">
-        <dl>
-            <dt th:text="#{아이디}"></dt>
-            <dd>
+
                 <!-- 아이디 : username -->
                 <!-- value로 연결해서 로그인 실패해도 아이디 유지 -->
-                <input type="text" name="username" th:value="${session.username}">
+                <input type="text" name="username" th:value="${session.username}" th:placeholder="#{아이디}">
                 <!-- 아이디 혹은 이메일을 입력하세요로 수정해보기 -->
                 <div class="error" th:if="${session.NotBlank_username != null}"
                      th:text="${session.NotBlank_username}"></div>
-            </dd>
-        </dl>
-        <dl>
-            <dt th:text="#{비밀번호}"></dt>
-            <dd>
+
                 <!-- 비밀번호 : password -->
-                <input type="password" name="password">
+                <input type="password" name="password" th:placeholder="#{비밀번호}">
                 <div class="error" th:if="${session.NotBlank_password != null}"
                                     th:text="${session.NotBlank_password}"></div>
-            </dd>
-        </dl>
+
         <!-- 로그인 버튼 -->
         <button type="submit" th:text="#{로그인}"></button>
         <div class="error" th:if="${session.Global_error != null}"

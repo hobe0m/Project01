@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 // 스프링 시큐리티 설정
@@ -19,7 +20,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        /* 인증 설정 S - 로그인 */
+        /* 인증 설정 S - 로그인 & 로그아웃 */
 
         // 시큐리티는 인증(로그인)과 인가(주소 접근 시 통제, 회원만 혹은 관리자만)가 핵심
         // formLogin 내부에 있는 모든 것은 로그인 관련된 설정을 하는 것
@@ -52,7 +53,15 @@ public class SecurityConfig {
             //            : AuthenticationFailureHadler 인터페이스의 구현체를 만들어주면 된다.
 
         });
-        /* 인증 설정 E - 로그인 */
+
+        // 로그아웃
+        http.logout(c -> {
+           c.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                   .logoutSuccessUrl("/member/login");
+                   // 상세하게 할 때는 handler를 사용해서 상세 설정을 한다.
+                   // 지금은 링크만 연결
+        });
+        /* 인증 설정 E - 로그인 & 로그아웃 */
 
         return http.build();
     }

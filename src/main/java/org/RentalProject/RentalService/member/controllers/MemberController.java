@@ -4,13 +4,19 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.RentalProject.RentalService.commons.Utils;
 import org.RentalProject.RentalService.commons.exceptions.ExceptionProcessor;
+import org.RentalProject.RentalService.member.MemberUtil;
+import org.RentalProject.RentalService.member.entities.Member;
 import org.RentalProject.RentalService.member.service.JoinService;
+import org.RentalProject.RentalService.member.service.MemberInfo;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.security.Security;
 
 // ExceptionProcessor : 발생하는 에러를 에러페이지로 연결시켜주는 역할을 한다.
 // @Controller : 스프링에서 관리하는 Controller라는 것을 알려주고 컴포넌트 스캔에 의해
@@ -42,10 +48,14 @@ public class MemberController implements ExceptionProcessor {
 
     // private final JoinValidator joinValidator; 필요 없어짐
     private final JoinService joinService; // JoinService로 대체해서 의존성 주입
-    
+
+    // 이걸 통해, 로그인의 여부와 session에 있는 멤버의 정보(회원 정보)를 조회할 수 있다.
+    private final MemberUtil memberUtil;
+
     // 회원 가입쪽
     @GetMapping("/join")
     public String join(@ModelAttribute RequestJoin form) {
+
         /*
          RequestJoin이 커맨드 객체이다.
           - 요청 데이터(클라이언트가 입력한 데이터) 처리에 특화된 객체
@@ -109,5 +119,83 @@ public class MemberController implements ExceptionProcessor {
 
         return utils.tpl("member/login");
     }
+
+    // 로그인의 정보를 가져오는 방법 : 1번, principal
+    // @Responsebody : View가 없이 데이터를 반환
+    //  - 메소드가 직접 데이터를 반환해서, 해당 데이터가 HTTP 응답의 본문으로 사용된다.
+    //  - JSON 형식으로 응답을 보낸다.
+
+    /*
+    @ResponseBody
+    @GetMapping("/info")
+    public void info(Principal principal) {
+        // principal을 통해 유저의 이름을 가져온다.
+        String username = principal.getName();
+        System.out.printf("username=%s%n", username);
+    }
+    */
+
+    // 로그인 정보를 가져오는 방법 : 3번, AuthenticationPrincipal
+    // 요청메소드에 주입 후 가져오는 방법
+    // principal보다 더 많은 정보를 가져온다.
+    /*
+    @ResponseBody
+    @GetMapping("/info")
+    public void info(@AuthenticationPrincipal MemberInfo memberInfo) {
+
+        System.out.println(memberInfo);
+    }
+    */
+
+    // 로그인 정보를 가져오는 방법 : 3번,
+    // 요청메소드에 주입하지 않고 가져오는 방법
+
+    /*
+    @ResponseBody
+    @GetMapping("/info")
+    public void info() {
+        // getPrincipal이 MemberInfo의 구현객체이기 때문에 (MemberInfo)로 형변환
+        MemberInfo memberInfo = (MemberInfo)SecurityContextHolder
+                                .getContext()
+                                .getAuthentication()
+                                .getPrincipal();
+
+        System.out.println(memberInfo);
+    }
+    */
+
+    // 로그인 상태일 때는 회원 정보를 출력한다.
+    @ResponseBody
+    @GetMapping("/info")
+    public void info() {
+        if (memberUtil.isLogin()) {
+            Member member = memberUtil.getMember();
+            System.out.println(member);
+        } else {
+            System.out.println("미로그인 상태입니다.");
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

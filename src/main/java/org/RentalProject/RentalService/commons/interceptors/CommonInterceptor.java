@@ -3,6 +3,7 @@ package org.RentalProject.RentalService.commons.interceptors;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.RentalProject.RentalService.member.MemberUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,6 +19,7 @@ public class CommonInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         checkDevice(request);
+        clearLoginData(request);
 
         return true;
     }
@@ -56,5 +58,18 @@ public class CommonInterceptor implements HandlerInterceptor {
         
         // setAttribute(String name(속성명), Object value(값))이 기본
         session.setAttribute("device", device);
+    }
+
+    // http가 매개변수인 이유
+    //  - 주소도 알 필요가 있고(로그인 페이지가 아니면 검증 메세지를 없애기 위해, 세션을 지운다)
+    //  - session 객체도 사용해야 하기 때문에(세션을 지우려면 세션을 사용해야 한다)
+    private void clearLoginData(HttpServletRequest request) {
+        String URL = request.getRequestURI();
+        // URL이 /member/login를 포함하고 있는지를 확인, 없으면 검증 메세지 삭제
+        if (URL.indexOf("/member/login") == -1) {
+            HttpSession session = request.getSession();
+            MemberUtil.clearLoginData(session);
+        }
+
     }
 }

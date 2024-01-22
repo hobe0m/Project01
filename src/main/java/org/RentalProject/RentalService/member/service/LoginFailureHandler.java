@@ -12,6 +12,8 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 
+// 주로 검증에 대한 내용들이 들어가 있다.
+
 // 요청과 응답에 대한 핵심적인 객체가 포함되어 있다, 따라서 사용 가능
 // 실패 시에 단순히 주소만 이동하는 것이 아니고
 //                  상세히 조정할 것이 있을 때 AuthenticationFailureHandler 사용
@@ -35,10 +37,16 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
         // 로그인 아이디 유지
         session.setAttribute("username", username);
 
+        // 아이디 입력
+        // 객체를 만들지 않고 일반 클래스 내에서도 사용가능하게 하려고 Bundle의 메소드 추가(Utils)
+        // 없을 때 메세지 출력, 메세지도 좋지만 코드를 사용중이기 때문에 코드 사용
         if (!StringUtils.hasText(username)) {
             session.setAttribute("NotBlank_username", Utils.getMessage("NotBlank.id"));
         }
 
+        // 비밀번호 입력
+        // 객체를 만들지 않고 일반 클래스 내에서도 사용가능하게 하려고 Bundle의 메소드 추가(Utils)
+        // 없을 때 메세지 출력, 메세지도 좋지만 코드를 사용중이기 때문에 코드 사용
         if (!StringUtils.hasText(password)) {
             session.setAttribute("NotBlank_password", Utils.getMessage("NotBlank.password"));
         }

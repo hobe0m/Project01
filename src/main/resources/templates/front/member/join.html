@@ -87,7 +87,7 @@
         <div th:text="${회원가입_약관}"></div>
         <div class="terms">약관이 들어갈 자리</div>
         <div class="terms_agree">
-            <input type="checkbox" name="agree" value="true" id="agree">
+            <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
             <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
             <!--
              - 여기서 for 속성은 라벨이 어떤 입력 필드와 연결되어 있는지를 나타낸다.
