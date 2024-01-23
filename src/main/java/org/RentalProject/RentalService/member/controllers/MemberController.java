@@ -172,7 +172,7 @@ public class MemberController implements ExceptionProcessor {
             Member member = memberUtil.getMember();
             System.out.println(member);
         } else {
-            System.out.println("미로그인 상태입니다.");
+            System.out.println("미 로그인 상태입니다.");
         }
     }
 }
