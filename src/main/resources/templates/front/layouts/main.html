@@ -11,6 +11,10 @@
     <!-- 공통으로 필요한 것 추가 -->
     <meta charset="UTF-8">
 
+    <!-- 토큰 추가 -->
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
     <!-- #{pageTitle}이 속성으로 추가되면 출력 가능 -->
     <title th:if="${pageTitle != null}" th:text="#{pageTitle}"></title>
 

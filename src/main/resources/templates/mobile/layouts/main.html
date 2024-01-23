@@ -11,6 +11,10 @@
     <!-- 공통으로 필요한 것 추가 -->
     <meta charset="UTF-8">
 
+    <!-- 토큰 추가 -->
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
     <!-- Mobile에서는 viewport 설정 필수 -->
     <!-- 화소 기준의 사이즈가 있을 때 기준을 정해주지 않으면 작게 보이기 때문에, 디바이스 별 기준(크기)을 따로 잡아준다. -->
     <!-- viewport : 보이는 화면에 대한 설정 -->
